@@ -1,0 +1,55 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block  extrahead %}
+<link href="{% static 'css/modaal.min.css' %}" rel="stylesheet">
+<style type="text/css">
+    #card{
+        background:none;
+    }
+    .card{
+        padding:1em;
+    }
+    #perfil {
+        width: 50%;
+        border: 1px solid #2196F3;
+        border-radius: 8px;
+        margin: 0 auto;        
+    }
+    #volver{
+        background: #fff;
+        color: #000;
+        font-size:1em;
+    }
+</style>
+{% endblock extrahead %}
+{% block profile %}
+<div class="card profile-view">
+    <div id='perfil'>
+    <div class="pv-header">
+        {% if object.avatar %}
+        <img src="{{object.avatar.url}}" class="pv-main" alt="">
+        {% else %}
+        <img src="{% static 'img/profile.jpg' %}" class="pv-main" alt="">
+        {% endif %}
+    </div>
+    <div class="pv-body">
+        <h2>{{object.razon_social}}</h2>
+        <small>{{object.descripcion}}</small>
+        <ul class="pv-contact">
+            <li><i class="zmdi zmdi-pin"></i> {{object.direccion}}</li><br>
+            <li><i class="zmdi zmdi-email"></i> {{object.email}}</li><br>
+            <li><i class="zmdi zmdi-face"></i> {{object.contacto}}</li>
+        </ul>
+        <ul class="pv-follow">
+            <li><strong>RUC</strong> {{object.ruc}}</li>
+        </ul>
+        <a href="{% url 'persona:crear_proveedor'%}" class="btn btn-primary"><i class="zmdi zmdi-plus-circle-o"></i> Nuevo Proveedor</a> 
+        <a href="{% url 'persona:listar_proveedores'%}" class="btn btn-default"><i class="zmdi zmdi-arrow-left"></i> Volver</a> 
+    </div>
+    </div>
+</div>
+{% endblock profile %}
+{% block script %}
+<script src="{% static 'js/modaal.min.js' %}"></script>
+{% endblock script %}  

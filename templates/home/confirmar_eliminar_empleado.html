@@ -1,0 +1,29 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block extrahead %}
+<style type="text/css">
+    #eliminar{
+        width:50%;
+        margin: 0 auto;
+    }
+    #borrado{
+        text-align: center;
+    }
+</style>
+{% endblock extrahead %}
+{% block content %}
+<div class="card-header">
+    <h2 id="borrado">Borrado de Empleados</h2>
+</div>   
+<div class="card-body card-padding">    
+    <div id="eliminar">
+        <div class="bs-item z-depth-5">
+            <form action="" method="post">{% csrf_token %} 
+                <p class="f-500 c-black m-b-15"> ¿Realmente quieres borrar a <strong>{{object.username }}</strong>"?</p> 
+                <button type="submit" class="btn btn-primary btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-check"></i></button>
+                <button class="btn bgm-deeporange btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-close"></i></button>
+            </form> 
+        </div>
+    </div>
+{% endblock content %}

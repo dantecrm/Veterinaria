@@ -1,0 +1,359 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-20 21:41-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: django_apps/clinica/models.py:22
+msgid "Propietario"
+msgstr ""
+
+#: django_apps/clinica/models.py:23
+msgid "Ficha"
+msgstr ""
+
+#: django_apps/clinica/models.py:24 django_apps/inventario/models.py:22
+#: django_apps/persona/models.py:25
+msgid "Nombre"
+msgstr ""
+
+#: django_apps/clinica/models.py:26
+msgid "Raza"
+msgstr ""
+
+#: django_apps/clinica/models.py:27
+msgid "Color"
+msgstr ""
+
+#: django_apps/clinica/models.py:28
+msgid "Especie"
+msgstr ""
+
+#: django_apps/clinica/models.py:29
+msgid "Edad"
+msgstr ""
+
+#: django_apps/clinica/models.py:30
+msgid "Peso"
+msgstr ""
+
+#: django_apps/clinica/models.py:31
+msgid "Descripcion"
+msgstr ""
+
+#: django_apps/clinica/models.py:34
+msgid "Ambiental"
+msgstr ""
+
+#: django_apps/clinica/models.py:34
+msgid ""
+"¿Desde cuando está enfermo el animal?, ¿Si esta enfermedad ha sido tratada o "
+"no?"
+msgstr ""
+
+#: django_apps/clinica/models.py:35
+msgid "Alimento"
+msgstr ""
+
+#: django_apps/clinica/models.py:35
+msgid ""
+"¿ Qué tipo de dieta se le suministra? Casera o fabricado (seca, húmeda,semi "
+"seca)"
+msgstr ""
+
+#: django_apps/clinica/models.py:36
+msgid "Baño"
+msgstr ""
+
+#: django_apps/clinica/models.py:36
+msgid "¿Cuantas veces por mes se le baña al animal?"
+msgstr ""
+
+#: django_apps/clinica/models.py:76
+msgid "Vacuna"
+msgstr ""
+
+#: django_apps/clinica/models.py:77 django_apps/clinica/models.py:85
+msgid "Fecha"
+msgstr ""
+
+#: django_apps/clinica/models.py:84
+msgid "Producto"
+msgstr ""
+
+#: django_apps/clinica/models.py:93
+msgid "Motivo"
+msgstr ""
+
+#: django_apps/clinica/models.py:94
+msgid "N° de ficha de seguimiento"
+msgstr ""
+
+#: django_apps/clinica/models.py:97
+msgid "FR"
+msgstr ""
+
+#: django_apps/clinica/models.py:98
+msgid "FC"
+msgstr ""
+
+#: django_apps/clinica/models.py:99
+msgid "FP"
+msgstr ""
+
+#: django_apps/clinica/models.py:100
+msgid "T"
+msgstr ""
+
+#: django_apps/clinica/models.py:102
+msgid "Examen de piel"
+msgstr ""
+
+#: django_apps/clinica/models.py:103
+msgid "Examen de mucosas visibles"
+msgstr ""
+
+#: django_apps/clinica/models.py:104
+msgid "Ganglios palpables"
+msgstr ""
+
+#: django_apps/clinica/models.py:106
+msgid "Apetito"
+msgstr ""
+
+#: django_apps/clinica/models.py:107
+msgid "Sed"
+msgstr ""
+
+#: django_apps/clinica/models.py:108
+msgid "Defecación"
+msgstr ""
+
+#: django_apps/clinica/models.py:109
+msgid "Miccion"
+msgstr ""
+
+#: django_apps/compras/models.py:22 django_apps/ventas/models.py:45
+msgid "Cantidad"
+msgstr ""
+
+#: django_apps/compras/models.py:24
+msgid "Descuento"
+msgstr ""
+
+#: django_apps/compras/models.py:25
+msgid "Valor de Descuento"
+msgstr ""
+
+#: django_apps/compras/models.py:26 django_apps/ventas/models.py:46
+msgid "Precio Real"
+msgstr ""
+
+#: django_apps/compras/models.py:27 django_apps/ventas/models.py:47
+msgid "IGV"
+msgstr ""
+
+#: django_apps/compras/models.py:28 django_apps/ventas/models.py:48
+msgid "Total"
+msgstr ""
+
+#: django_apps/home/models.py:40 django_apps/persona/models.py:29
+msgid "DNI"
+msgstr ""
+
+#: django_apps/home/models.py:41
+msgid "Second Name"
+msgstr ""
+
+#: django_apps/home/models.py:42
+msgid "País de Nacimiento"
+msgstr ""
+
+#: django_apps/home/models.py:43
+msgid "Grado de instrucción"
+msgstr ""
+
+#: django_apps/home/models.py:44 django_apps/persona/models.py:30
+msgid "Género"
+msgstr ""
+
+#: django_apps/home/models.py:45
+msgid "Fecha de Nacimiento"
+msgstr ""
+
+#: django_apps/home/models.py:46
+msgid "Domicilio"
+msgstr ""
+
+#: django_apps/home/models.py:47
+msgid "Telefono"
+msgstr ""
+
+#: django_apps/home/models.py:48
+msgid "Estado Civil"
+msgstr ""
+
+#: django_apps/home/views.py:208
+msgid "Contrasena cambiado correctamente"
+msgstr ""
+
+#: django_apps/home/views.py:215
+msgid "Password change"
+msgstr ""
+
+#: django_apps/inventario/models.py:21 django_apps/ventas/models.py:22
+msgid "Código"
+msgstr ""
+
+#: django_apps/inventario/models.py:24
+msgid "Marca"
+msgstr ""
+
+#: django_apps/inventario/models.py:25
+msgid "Precio de Compra"
+msgstr ""
+
+#: django_apps/inventario/models.py:26
+msgid "Precio de Venta"
+msgstr ""
+
+#: django_apps/inventario/models.py:85
+msgid "Categoría"
+msgstr ""
+
+#: django_apps/persona/models.py:27
+msgid "Apellido Paterno"
+msgstr ""
+
+#: django_apps/persona/models.py:28
+msgid "Apellido Materno"
+msgstr ""
+
+#: django_apps/persona/models.py:70
+msgid "Razón Social"
+msgstr ""
+
+#: django_apps/persona/models.py:71
+msgid "RUC"
+msgstr ""
+
+#: django_apps/persona/models.py:73
+msgid "Descripción"
+msgstr ""
+
+#: django_apps/persona/models.py:74
+msgid "Dirección"
+msgstr ""
+
+#: django_apps/persona/models.py:75
+msgid "Contacto"
+msgstr ""
+
+#: django_apps/persona/models.py:76
+msgid "Correo Electrónico"
+msgstr ""
+
+#: templates/clinica/crear_mascota.html:86
+#: templates/clinica/nueva_mascota.html:86 templates/home/empleado_form.html:32
+#: templates/inventario/crear_articulo.html:43
+#: templates/inventario/crear_categoria.html:43
+#: templates/persona/crear_cliente.html:44
+#: templates/persona/crear_proveedor.html:44
+msgid "Edición de Perfil de Empleado"
+msgstr ""
+
+#: templates/clinica/crear_mascota.html:90
+#: templates/clinica/nueva_mascota.html:90
+#: templates/compras/nueva_compra.html:51 templates/home/empleado_form.html:36
+#: templates/home/signup.html:24 templates/inventario/crear_articulo.html:47
+#: templates/inventario/crear_categoria.html:47
+#: templates/persona/crear_cliente.html:48
+#: templates/persona/crear_proveedor.html:48
+#: templates/ventas/venta_form.html:85
+msgid "Go"
+msgstr ""
+
+#: templates/compras/nueva_compra.html:47 templates/ventas/venta_form.html:81
+msgid "Agregar Nuevo Compra"
+msgstr ""
+
+#: templates/home/empleado_form.html:79
+msgid "name"
+msgstr ""
+
+#: templates/home/empleado_form.html:87
+msgid "apellido paterno"
+msgstr ""
+
+#: templates/home/empleado_form.html:95
+msgid "apellido materno"
+msgstr ""
+
+#: templates/home/signup.html:20
+msgid "Signup User Only Pets"
+msgstr ""
+
+#: veterinaria1/settings.py:183
+msgid "Japanese"
+msgstr ""
+
+#: veterinaria1/settings.py:184
+msgid "Simplified Chinese"
+msgstr ""
+
+#: veterinaria1/settings.py:185
+msgid "Traditional Chinese"
+msgstr ""
+
+#: veterinaria1/settings.py:186
+msgid "French"
+msgstr ""
+
+#: veterinaria1/settings.py:187
+msgid "German"
+msgstr ""
+
+#: veterinaria1/settings.py:188
+msgid "English"
+msgstr ""
+
+#: veterinaria1/settings.py:189 veterinaria1/settings.py:191
+msgid "Spanish"
+msgstr ""
+
+#: veterinaria1/settings.py:190
+msgid "Argentinian Spanish"
+msgstr ""
+
+#: veterinaria1/settings.py:192
+msgid "Portuguese"
+msgstr ""
+
+#: veterinaria1/settings.py:193
+msgid "Brazilian Portuguese"
+msgstr ""
+
+#: veterinaria1/settings.py:194
+msgid "Italian"
+msgstr ""
+
+#: veterinaria1/settings.py:195
+msgid "Hebrew"
+msgstr ""
+
+#: veterinaria1/settings.py:196
+msgid "Korean"
+msgstr ""

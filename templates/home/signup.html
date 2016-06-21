@@ -1,0 +1,69 @@
+{% extends "base_sistema.html" %}
+{% block extrahead %}
+<style type="text/css">
+    #centro{
+        padding: 2em;
+        border: 1px solid #00BCD4;
+        border-radius:4px;
+        width:50%;
+        margin:0 auto;
+    }
+    #signup{
+        text-align: center;
+        font-size:2em;
+    } 
+</style>
+{% endblock extrahead %}
+{% load i18n %}
+{% block content %}
+ <!-- <div id="blog-text" class="reading-wrapper"> -->
+ <!--    <h2>{% trans "Signup User Only Pets" %}</h2> -->
+ <!--     <form method="post"> -->
+ <!--        {% csrf_token %} -->
+ <!--        {{ form.as_p }} -->
+ <!--        <input type="submit" value="{% trans "Go" %}"/> -->
+ <!--    </form> -->
+<!-- </div> --> 
+<div class="card-header bgm-cyan ch-alt">
+     <h2 id='signup'>Sign Up Empleado
+         <small>Registro de nuevo empleado para la Veterianria Only Pets of Cannissur</small>
+     </h2>
+ </div>
+ <div class="card-body card-padding">
+     <div id="centro">
+     <form method="post">{% csrf_token %}
+     <div class="input-group">
+         <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+         <div class="fg-line">
+             <input id="id_username" maxlength="30" name="username" type="text" class="form-control" placeholder="Nombre de Usuario">
+         </div>
+     </div>
+     <br/>
+     <div class="input-group">
+         <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+         <div class="fg-line">
+             <input id="id_email" maxlength="254" name="email" type="email"
+             class="form-control" placeholder="Correo Electrónico">
+         </div>
+     </div>
+     <br/>
+     <div class="input-group">
+         <span class="input-group-addon"><i class="zmdi zmdi-key"></i></span>
+         <div class="fg-line">
+             <input id="id_password1" name="password1" type="password" class="form-control" placeholder="Contraseña">
+         </div>
+     </div>
+     <br/>
+     <div class="input-group">
+         <span class="input-group-addon"><i class="zmdi zmdi-key"></i></span>
+         <div class="fg-line">
+             <input id="id_password2" name="password2" type="password" class="form-control" placeholder="Confirmación de Contraseña">
+         </div>
+     </div>
+     <br/>
+     <button type="submit" class="btn btn-info">Guardar <i class="zmdi zmdi-mail-send"></i></button>
+     <a href="{% url 'home:inicio' %}" class="btn bgm-gray waves-effect"><i class="zmdi zmdi-arrow-left"></i> Cancelar</a>
+ </form>
+ </div> 
+ </div> 
+{% endblock content %}

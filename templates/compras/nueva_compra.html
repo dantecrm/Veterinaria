@@ -1,0 +1,127 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block extrahead %}
+<link href="{% static 'css/bootstrap-select.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/farbtastic.css' %}" rel="stylesheet">
+<link href="{% static 'css/chosen.css' %}" rel="stylesheet">
+<link href="{% static 'css/summernote.css' %}" rel="stylesheet">
+<style type="text/css">
+    #centro{
+        padding: 2em;
+        border: 1px solid #00BCD4;
+        border-radius:4px;
+        width:50%;
+        margin:0 auto;
+    }
+    #compra{
+        text-align: center;
+        font-size:2em;
+    }
+    #choice{
+        margin-left:1em;
+        width:20em;
+    }
+    #btn{
+        margin-left:9em;
+    }
+    #afecto{
+        margin-left:1em;
+    }
+    input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+        outline:none;
+        border: none;
+        font-size:1.2em;
+        border-radius:3px;
+        padding: 0.5em;     
+        border-color: #00a5bb;
+        background: #00BCD4;
+        color:#fff;
+        box-shadow: 2px 2px 4px #E0E0E0;
+    } 
+</style>
+{% endblock extrahead %}
+{% block content %}
+ <!-- <div id="blog-text" class="reading-wrapper"> -->
+ <!--    <h2>{% trans "Agregar Nuevo Compra" %}</h2> -->
+ <!--     <form method="post"> -->
+ <!--        {% csrf_token %} -->
+ <!--        {{ form.as_p }} -->
+ <!--        <input type="submit" value="{% trans "Go" %}"/> -->
+ <!--    </form> -->
+<!-- </div> --> 
+<div class="card-header ch-alt bgm-cyan">
+     <h2 id='compra'>Agregar Nueva Compra</h2>
+</div>
+<div class="card-body card-padding">
+     <div id="centro">
+         <form enctype="multipart/form-data" method="post">{% csrf_token %}
+             <div class="input-group" id="choice">
+                 <div class="fg-line">
+                     <label class="fg-label">Proveedor</label>
+                     {{form.proveedor}}
+                 </div> 
+             </div>
+             <br/>
+             <br/>
+             <div class="input-group" id="choice">
+                 <div class="fg-line">
+                     <label class="fg-label">Categoría</label>
+                     {{form.categoria}}
+                 </div> 
+             </div>
+             <br/>
+             <br/>
+             <div class="input-group" id="choice">
+                 <div class="fg-line">
+                     <label class="fg-label">Producto</label>
+                     {{form.producto}}
+                 </div> 
+             </div>
+             <br/>
+             <br/>
+             <div class="toggle-switch toggle-switch-demo" id="afecto">
+                 <label for="ts1" class="ts-label">Afecto</label>
+                 {{form.afecto}}
+                 <label for="ts1" class="ts-helper"></label>
+             </div>
+             <br/>
+             <br/>
+             <br/>
+             <div class="form-group">
+                 <span class="input-group-addon"><i class="zmdi zmdi-plus-2"></i></span>
+                 <div class="form-group fg-line">
+                     <label>Cantidad</label>
+                     {{form.cantidad}}
+                 </div>
+             </div>
+             <br/>
+             <br/>
+             <div class="form-group">
+                 <span class="input-group-addon"><i class="zmdi zmdi-forward"></i></span>
+                 <div class="form-group fg-line">
+                     <label>Descuento</label>
+                     {{form.descuento}}
+                 </div>
+             </div>
+             <br/>
+             <br/>
+             <button id="btn" type="submit" class="btn bgm-lightblue waves-effect">Guardar <i class="zmdi zmdi-mail-send"></i></button>
+             <a href="{% url 'compras:listar_compras' %}" class="btn bgm-gray waves-effect"><i class="zmdi zmdi-arrow-left"></i> Volver</a>
+         </form>
+     </div> 
+</div>  
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/nouislider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'js/typeahead.bundle.min.js' %}"></script>
+<script src="{% static 'js/summernote-updated.min.js' %}"></script>
+
+<script src="{% static 'js/chosen.jquery.js' %}"></script>
+<script src="{% static 'js/fileinput.min.js' %}"></script>
+<script src="{% static 'js/input-mask.min.js' %}"></script>
+<script src="{% static 'js/farbtastic.min.js' %}"></script>
+{% endblock script %}       

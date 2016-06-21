@@ -1,0 +1,261 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load formset_tags %}
+{% block extrahead %}
+<link href="{% static 'css/bootstrap-select.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/farbtastic.css' %}" rel="stylesheet">
+<link href="{% static 'css/chosen.css' %}" rel="stylesheet">
+<link href="{% static 'css/summernote.css' %}" rel="stylesheet">
+<script src="{{ STATIC_URL }}js/jquery.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+<style type="text/css">
+    .row{
+        padding-left: 1em;
+    }
+    #f-500, #file, #btn{
+        margin-left:1.5em;
+    }
+    input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+        outline:none;
+        border: none;
+        font-size:1.2em;
+        border-radius:3px;
+        padding: 0.5em;     
+        border-color: #FFC107;
+        background: #FFAB00;
+        color:#fff;
+        box-shadow: 2px 2px 4px #E0E0E0;
+    } 
+    #cliente{
+        width:23em;
+    }
+    .anamnesis, .iden,.ant{
+        position: relative;
+        background:#FFECB3;
+        font-size:1.6em;
+        padding: 0.3em 1em 0.3em 1em;
+        border-radius:8px;
+        text-align:center;
+        bottom: 8px;
+    }
+    .ant, .iden {
+        width:65%;
+    }
+    #clinica {
+        text-align:center;
+        font-size:2em;
+    }
+    .parte{
+        width:48%;
+/*        background: #E1F5FE;*/
+        border-radius:8px;        
+        position: relative;
+        display:inline-block;
+    } 
+    .item {
+        background-color: #FFFDE7;
+        border: 1px solid #FFC107;
+        border-radius:8px;
+        margin-bottom: 4px;
+        padding: 5px 15px;
+    }
+    .subtext {
+        text-align:center;
+    }
+    .anteceden{
+        width:100%;
+        top: 20em;
+    }
+    #btn {
+        width:20em;
+    }
+    .save{
+        position:relative;
+        top: 2em;
+    }
+    .vacuna, .despar{
+        position:relative;
+        bottom: 0.6em;
+    }
+</style>
+{% endblock extrahead %}
+{% block content %}
+ <!-- <div id="blog-text" class="reading-wrapper"> -->
+ <!--    <h2>{% trans "Edición de Perfil de Empleado" %}</h2> -->
+ <!--     <form method="post"> -->
+ <!--        {% csrf_token %} -->
+ <!--        {{ form.as_p }} -->
+ <!--        <input type="submit" value="{% trans "Go" %}"/> -->
+ <!--    </form> -->
+<!-- </div> --> 
+<div class="card-header bgm-orange">
+     <h2 id='clinica'>Nueva Mascota del Propietario</h2>
+</div>
+<div class="card-body card-padding">
+    <form enctype="multipart/form-data" method="post">{% csrf_token %}
+        <div class="row">
+            <p class="iden c-black f-500 m-b-5">Identificación</p>
+            <div class="col-sm-4">
+                <div class="input-group" id="cliente">
+                    <div class="fg-line">
+                        <label>Propietario</label>
+                        {{form.propietario}}
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Nombre de la Mascota</label>
+                        {{form.nombre}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Raza</label>
+                        {{form.raza}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Color</label>
+                        {{form.color}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Especie</label>
+                        {{form.especie}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Edad</label>
+                        {{form.edad}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Peso</label>
+                        {{form.peso}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Descripción</label>
+                        {{form.descripcion}}
+                    </div>
+                </div>                                                
+                <p class="anamnesis c-black f-500 m-b-5">ANAMNESIS</p>
+                <div class="form-group" class="top">
+                    <div class="form-group fg-line">
+                        <label>Ambiental</label>
+                        {{form.ambiental}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Alimentación</label>
+                        {{form.alimento}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group fg-line">
+                        <label>Baño</label>
+                        {{form.bano}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p id="f-500" class="f-500 c-black m-b-20">Imagen</p>  
+                {{form.avatar}}                
+            </div>
+        </div>
+        <div class="anteceden row">
+            <p class="ant c-black f-500 m-b-5">Antecedentes</p>
+            <div class="col-sm-4">
+                <p class="c-black f-500 m-b-5 subtext">Vacunas</p>
+                <div id="formset" data-formset-prefix="{{ vacuna_form.prefix }}">
+                    {{ vacuna_form.management_form }}
+                    <div data-formset-body>
+                        {% for form in vacuna_form %}
+                        <div class="item" data-formset-form>
+                            {{ form }}
+                            <!-- <button type="button" data-formset-delete-button>Delete</button> -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <script type="form-template" data-formset-empty-form>
+                        {% escapescript %}
+                        <div class="item" data-formset-form>
+                        {{ vacuna_form.empty_form }}
+                        <!-- <button type="button" data-formset-delete-button>Delete form</button> -->
+                        </div>
+                        {% endescapescript %}
+                    </script>
+                    <button type="button" class="btn btn-warning waves-effect" data-formset-add>Agregar &nbsp;<i class="zmdi zmdi-plus-circle-o"></i></button>
+                    <script>jQuery(function($) {
+                        $("#formset").formset({
+                            animateForms: true
+                        });});
+                    </script>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p class="c-black f-500 m-b-5 subtext">Desparacitantes</p>
+                <div id="formset1" data-formset-prefix="{{ desparacitante_form.prefix }}">
+                    {{ desparacitante_form.management_form }}
+                    <div data-formset-body>
+                        {% for form in desparacitante_form %}
+                        <div class="item" data-formset-form>
+                            {{ form }}
+                            <!-- <button type="button" data-formset-delete-button>Delete</button> -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <script type="form-template" data-formset-empty-form>
+                        {% escapescript %}
+                        <div  class="item" data-formset-form>
+                        {{ desparacitante_form.empty_form }}
+                        <!-- <button type="button" data-formset-delete-button>Delete form</button> -->
+                        </div>
+                        {% endescapescript %}
+                    </script>
+                    <button type="button" class="btn btn-warning waves-effect" data-formset-add>Agregar &nbsp;<i class="zmdi zmdi-plus-circle-o"></i></button>
+                    <script>jQuery(function($) {
+                        $("#formset1").formset({
+                            animateForms: true });
+                        });
+                    </script>
+                </div> 
+            </div> 
+            <div class="col-sm-4">
+                <div class="input-group save">           
+                <button type="submit" id="btn" class="btn btn-primary btn-block waves-effect">Guardar <i class="zmdi zmdi-mail-send"></i></button>
+                <br>
+                <br>
+                <a href="{% url 'ventas:listar_ventas' %}" id="btn"class="btn btn-default waves-effect"><i class="zmdi zmdi-arrow-left"></i> Volver</a>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <!-- <button type="submit" id="btn" class="btn btn-primary">Guardar <i class="zmdi zmdi-mail-send"></i></button> &nbsp; -->
+    </form>
+</div>  
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/nouislider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'js/typeahead.bundle.min.js' %}"></script>
+<script src="{% static 'js/summernote-updated.min.js' %}"></script>
+
+<script src="{% static 'js/chosen.jquery.js' %}"></script>
+<script src="{% static 'js/fileinput.min.js' %}"></script>
+<script src="{% static 'js/input-mask.min.js' %}"></script>
+<script src="{% static 'js/farbtastic.min.js' %}"></script>
+{% endblock script %}  

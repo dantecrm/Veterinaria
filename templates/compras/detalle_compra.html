@@ -1,0 +1,90 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block extrahead %}
+<style type="text/css">
+    #img{
+        width:50%;
+    }
+    .lado{
+        position:relative;
+        display:inline-block;
+    }
+    #detalle{
+        position:relative;
+        width:30%;
+    }
+    #detalle, #img{
+        position:relative;
+        display:inline-block;
+    }
+    #producto{
+        text-align:center;
+        font-size:3em;
+        border-bottom: 2px solid #2196f3;
+    }
+    .pmo-contact{
+        width:20%;
+        margin:0 auto;
+    }
+    .compra, .venta{
+        font-size:3em;        
+    }
+    .codigo{
+        font-size:2.5em;
+    }
+    .ptib-item{
+        font-size:1.2em;
+    }
+</style>
+{% endblock extrahead %}
+{% block producto %}
+<div class="card">
+      <div class="card-header">
+          <h2 id="producto">{{object.producto.nombre}}</h2>
+      </div>
+      <div class="card-body card-padding" id="img">
+          {% if object.producto.avatar %}    
+          <img src="{{object.producto.avatar.url}}" class="img-responsive" alt="">
+          {% endif %}
+      </div>
+      <div class="card pt-inner" id="detalle">
+          <div class="pti-header bgm-amber">
+              <h2> TOTAL S/. {{object.total}}</h2>
+                <div class="ptih-title">{{object.producto.nombre}}</div>
+            </div>
+            <div class="pti-body">
+                <div class="ptib-item">
+                    Proveedor: <strong>{{object.proveedor.razon_social}}</strong>
+                </div>
+                <div class="ptib-item">
+                    Categoría: <strong>{{object.categoria.nombre}}</strong>
+                </div>
+                <div class="ptib-item">
+                    Precio Unitario: <strong>S/. {{object.producto.p_compra}}</strong>
+                </div>
+                <div class="ptib-item">
+                    Cantidad: <strong>S/. {{object.cantidad}}</strong>
+                </div>
+                <div class="ptib-item">
+                    Precio Real: <strong>{{object.precio_real}}</strong>
+                </div>
+                <div class="ptib-item">
+                    IVA: <strong>{{object.iva}}</strong>
+                </div>
+                <div class="ptib-item">
+                    Descuento {{object.descuento}}%: <strong>S/.{{object.val_desc}}</strong>
+                </div>
+                <div class="ptib-item">
+                    Total: <strong>{{object.total}}</strong>
+                </div>
+            </div>
+            <div class="pti-footer">
+                <a href="{% url 'compras:listar_compras' %}" class="bgm-amber"><i class="zmdi zmdi-arrow-left"></i></a>
+            </div>
+        </div>
+
+  </div>
+
+
+{% endblock producto %}   

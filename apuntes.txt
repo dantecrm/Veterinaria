@@ -1,0 +1,38 @@
+Veterinaria
+==========
+1.- Servicios:
+    1.1. Atención al Cliente Personalizado
+        1.1.1. Ventas de articulos para mascotas
+            1.1.1.1. Con recibo, x > 5 soles.
+            1.1.1.2. Sin recibo, x < 5 soles.
+        1.1.2. Toda venta tiene que ser sacado del inventario.
+        1.1.3. El inventario (ALMACÉN) tiene que ser llenado por medio de
+        compras.
+    1.2. Atención Médica veterinaria
+
+Framework Django
+================
+Client <=> Web Server <=> WSGI (Web Server Gateway Interface)  =>  Request(Middleware)
+                           /\                                              ||
+                           ||                                              \/
+                     Response(Middleware) <= View <= View(Middleware) <=  URL Resolution 
+                           /\                 ||
+                           ||                 \/
+                           <==== <====  Exception(Middleware)
+
+Middlewares:
+- Es un sistema de plugin para alterar request y/o response.
+- Encargados de realizar tareas muy específicas.
+- El ORDEN de los mismos es muy importante.
+
+
+Session => Es un objeto que se guarda dentro del request
+
+DIGITO VERIFICADOR
+Por ejemplo, para 123456789041 el dígito de control será: 
+Suma de los números en los lugares pares: 2+4+6+8+0+1 = 21 
+Multiplicado x 3: 21 x 3 = 63 
+Suma de los números en los lugares impares: 1+3+5+7+9+4 = 29 
+Suma total: 63 + 29 = 92 
+Próximo múltiplo de 10 = 100 
+Dígito de control: 100 - 92 = 8 

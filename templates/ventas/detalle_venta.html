@@ -1,0 +1,97 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% block extrahead %}
+<link href="{% static 'css/tabla.css' %}" rel="stylesheet">
+<style type="text/css">
+    #detalle {
+        text-align:center;
+        font-size: 3em;
+    }
+    #cliente {
+        padding: 0.3em 1em 0.3em 1em;
+        background: #B2EBF2;
+        border-radius: 12px 12px 0px 0px;        
+        text-align: center;
+        font-weight: bold;
+        font-size:1.3em;
+    }
+    td,th,#prod{
+        text-align:center;
+    }
+    #img {
+        width:10%;
+        margin:0;
+        padding:0;
+        border-radius: 50%:
+    }
+    .zebra{
+        margin: 0 auto;
+    }
+    .body-food{
+        position: relative;
+        top: 1em;
+        width:20%;
+        margin: 0 auto;
+    }
+    tbody #total{
+        background:#B3E5FC;
+        border-bottom: 1px solid #00E5FF;
+    }
+    .zebra tfoot tr #total:last-child{
+        background:#B3E5FC;
+        -moz-border-radius: 0 0 12px 0;
+        -webkit-border-radius: 0 0 12px 0;
+        border-radius:0 0 12px 0;
+    }
+</style>
+{% endblock extrahead %}
+{% block content %}
+<div class="card-header ch-alt bgm-cyan">
+    <h2 id="detalle">Detalle de Venta</h2>
+</div>   
+<div class="card-body card-padding">
+<table cellspacing="0" class="zebra">
+   <caption id="cliente">Cliente: {{object.cliente.nombre}}</caption>
+    <thead>
+        <tr>
+            <th id="prod">Producto</th>
+            <th>Precio Unitario</th>
+            <th>Cantidad</th>
+            <th>Precio Real</th>
+            <th>IGV</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in productos %}
+        {% if i.venta.codigo in object.codigo %}
+        <tr>
+            <td>{{i.producto.producto.nombre}}</td>
+            <td>{{i.producto.producto.p_venta}}</td>
+            <td>{{i.cantidad}}</td>
+            <td>{{i.precio_real}}</td>
+            <td>{{i.iva}}</td>
+            <td id="total">{{i.total}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL</td>
+            <td id="total">{{total_venta}}</td>
+        </tr>
+    </tfoot>
+</table>
+<div class="body-food">
+    <a href="{% url 'ventas:update_venta' object.pk %}" class="btn btn-primary  btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-edit"></i></a> &nbsp;
+    <a href="{% url 'ventas:venta_nueva' %}" class="btn btn-warning btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-plus"></i></a> &nbsp;
+    <a href="{% url 'ventas:listar_ventas' %}" class="btn btn-default btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-mail-reply"></i></a> &nbsp;
+    <a href="{% url 'ventas:eliminar_venta' object.pk %}" class="btn bgm-deeporange btn-icon"><i class="zmdi zmdi-delete"></i><a>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% block extrahead %}
+<link href="{% static 'css/list.css' %}" rel="stylesheet">
+<style type="text/css">
+    #img{
+        width:40%;
+        margin: 0 auto;
+    }
+    .pmo-contact{
+        width:70%;
+        margin: 0 auto;
+        padding: 2em;
+        border-radius: 20px;
+        border: 1px solid #00B0FF;
+    }
+    .card-header {
+        text-align: center;
+    }
+</style>
+{% endblock extrahead %}
+{% block content %}
+<div class="card-header ch-alt bgm-orange ">
+    <h2>Ficha N° {{object.fichaseg}} de la Mascota
+        {{object.mascota.nombre}}<small>{{object.motivo}}</small>
+    </h2>
+</div>
+<div class="card-body card-padding">
+    <a class="pmo-map"id="img" href="">
+        <img src="{{object.mascota.avatar.url}}" >
+    </a>
+    <div class="pmo-contact">
+        <ol id="list" class="rounded-list">
+            <li><a href=""><strong>Constantes Clínicas</strong></a> 
+                <ol> 
+                    <li><a  href=""><strong>FR: </strong>{{object.fr}}</a></li> 
+                    <li><a  href=""><strong>FC: </strong>{{object.fc}}</a></li> 
+                    <li><a  href=""><strong>FP: </strong>{{object.fp}}</a></li>
+                    <li><a  href=""><strong>T: </strong>{{object.t}}</a></li>  
+                </ol> 
+            </li>
+            <li><a href=""><strong>Examen de Piel: </strong>{{object.exampiel}}</a></li>
+            <li><a href=""><strong>Examen  de mucosas Visibles: </strong>{{object.examucvis}}</a></li>
+            <li><a href=""><strong>Ganglios Palpables: </strong>{{object.gangpal}}</a></li>
+            <li><a href=""><strong>Grandes Funciones</strong></a> 
+                <ol> 
+                    <li><a  href=""><strong>Apetito: </strong>{{object.apetito}}</a></li> 
+                    <li><a  href=""><strong>Sed: </strong>{{object.sed}}</a></li> 
+                    <li><a  href=""><strong>Defecación: </strong>{{object.defecac}}</a></li> 
+                    <li><a  href=""><strong>Micción: </strong>{{object.miccion}}</a></li> 
+                </ol> 
+            </li>                         
+        </ol> 
+    </div>
+    <a href="{% url 'clinica:nuevo_estado_mascota' object.mascota.propietario.slug object.mascota.slug %}" class="btn btn-warning btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-plus"></i></a> &nbsp;
+    <a href="{% url 'clinica:historial_mascota' object.mascota.propietario.slug object.mascota.slug %}" class="btn btn-default btn-icon waves-effect waves-circle waves-float"><i class="zmdi zmdi-mail-reply"></i></a>
+</div>
+{% endblock content %}

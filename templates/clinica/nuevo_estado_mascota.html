@@ -1,0 +1,213 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block extrahead %}
+<link href="{% static 'css/bootstrap-select.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/farbtastic.css' %}" rel="stylesheet">
+<link href="{% static 'css/chosen.css' %}" rel="stylesheet">
+<link href="{% static 'css/summernote.css' %}" rel="stylesheet">
+<style type="text/css">
+    #centro{
+        padding: 3em;
+        /*border: 1px solid #00BCD4;
+        border-radius:4px;*/
+        margin:0 auto;
+    }
+    #estado{
+        text-align: center;
+        font-size:2em;
+    }
+    #sexo, #imagen{
+        margin-left:1em;
+        width:20em;
+    }
+    #btn{
+        position: relative;
+        top: 2em;
+    }
+    input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+        outline:none;
+        border: none;
+        font-size:1.2em;
+        border-radius:3px;
+        padding: 0.5em;     
+        border-color: #00a5bb;
+        background: #00BCD4;
+        color:#fff;
+        box-shadow: 2px 2px 4px #E0E0E0;
+    }
+    #choice{
+        width:30em;
+        margin:0 auto;
+    }
+    .subtitle {
+        padding: 0.1em 0em 0em 0em;
+        text-align: center;
+        margin: 0 auto;
+        border-left:5px solid #00B0FF;
+        border-right:5px solid #00B0FF;
+        background: #B3E5FC;
+        color: #fff;
+        width: 45%;
+        text-shadow: 2px 0px 4px #00BCD4;
+        font-size:2em;
+    }
+    .subtitle1 { 
+        text-align: center;
+        margin: 0 auto;
+        border-left:5px solid #00B0FF;
+        border-right:5px solid #00B0FF;
+        background: #B3E5FC;
+        color: #fff;
+        width: 22%;
+        text-shadow: 2px 0px 4px #00BCD4;
+        
+    }
+    .label {
+        padding: 0.2em 1em 0.2em 1em;
+        background: #B2EBF2;
+        border-right:12px;
+    }
+    #label{
+        color: #000;
+        font-size:1em;
+    }
+</style>
+{% endblock extrahead %}
+{% block content %}
+<div class="card-header ch-alt bgm-cyan">
+     <h2 id='estado'>Agregar Nuevo Estado de Mascota</h2>
+</div>
+<div class="card-body card-padding">
+    <div class="row" id="centro">
+         <form enctype="multipart/form-data" method="post">{% csrf_token %}
+            <div class="input-group" id="choice">
+                <div class="fg-line">
+                    <label class="fg-label" id="label">Mascota</label>
+                    {{form.mascota}}
+                </div>
+            </div>
+             <br/>
+             <br/>
+            <div class="input-group fg-float">
+                <span class="input-group-addon"><i class="zmdi zmdi-label"></i></span>
+                <div class="fg-line">
+                    {{form.motivo}}
+                    <label class="fg-label">Motivo</label>
+                </div>
+             </div>
+             <br/>
+             <br/>
+             <p class="c-black f-500 m-b-5 subtitle">Constantes Clínicas</p>
+             <div class="col-sm-3 m-b-20">
+                 <div class="form-group fg-line">
+                     <label class="label" id="label">FR:</label>
+                     {{form.fr}}
+                 </div>
+             </div>
+             <div class="col-sm-3 m-b-20">
+                 <div class="form-group fg-line">
+                     <label class="label" id="label">FC:</label>
+                     {{form.fc}}
+                 </div>
+             </div>
+             <div class="col-sm-3 m-b-20">
+                 <div class="form-group fg-line">
+                     <label class="label" id="label">FP:</label>
+                     {{form.fp}}
+                 </div>
+             </div>
+             <div class="col-sm-3 m-b-20">
+                 <div class="form-group fg-line">
+                     <label class="label" id="label">T:</label>
+                     {{form.t}}
+                 </div>
+             </div>
+             <br/>
+             <br/>
+             <br/>
+             <br/>
+             <div class="form-group">
+                 <div class="form-group fg-line">
+                     <label class="subtitle1" id="label">Examen de Piel</label>
+                     {{form.exampiel}}
+                 </div>
+             </div>
+             <br/>
+             <br/>
+             <div class="form-group">
+                 <div class="form-group fg-line">
+                     <label class="subtitle1" id="label">Examen  de mucosas visibles</label>
+                     {{form.examucvis}}
+                 </div>
+             </div>
+             <br/>
+             <br/>
+             <div class="form-group">
+                 <div class="form-group fg-line">
+                     <label class="subtitle1" id="label">Ganglios Palpables</label>
+                     {{form.gangpal}}
+                 </div>
+             </div>
+             <br/>
+             <br/>
+             <p class="c-black f-500 m-b-5 subtitle">Grandes Funciones</p>
+             <div class="col-sm-6">
+                 <div class="cp-container">
+                     <div class="form-group">
+                         <div class="form-group fg-line">
+                             <label class="label" id="label">Apetito</label> 
+                             {{form.apetito}}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-6">
+                 <div class="cp-container">
+                     <div class="form-group">
+                         <div class="form-group fg-line">
+                             <label class="label" id="label">Sed</label>
+                             {{form.sed}}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-6">
+                 <div class="cp-container">
+                     <div class="form-group">
+                         <div class="form-group fg-line">
+                             <label class="label" id="label">Defecación</label>
+                             {{form.defecac}}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-6">
+                 <div class="cp-container">
+                     <div class="form-group"> 
+                         <div class="form-group fg-line">
+                             <label class="label" id="label">Micción</label>
+                             {{form.miccion}}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <button id="btn" type="submit" class="btn bgm-lightblue waves-effect">Guardar <i class="zmdi zmdi-mail-send"></i></button>
+             <a id="btn"  href="{% url 'clinica:historial_mascota' mascota.propietario.slug mascota.slug %}" class="btn bgm-gray waves-effect"><i class="zmdi zmdi-arrow-left"></i> Volver</a>
+         </form>
+     </div> 
+</div>  
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/nouislider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'js/typeahead.bundle.min.js' %}"></script>
+<script src="{% static 'js/summernote-updated.min.js' %}"></script>
+
+<script src="{% static 'js/chosen.jquery.js' %}"></script>
+<script src="{% static 'js/fileinput.min.js' %}"></script>
+<script src="{% static 'js/input-mask.min.js' %}"></script>
+<script src="{% static 'js/farbtastic.min.js' %}"></script>
+{% endblock script %}    

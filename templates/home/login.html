@@ -1,0 +1,39 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <style type="text/css">
+        body{
+            font-family:sans-serif;
+            background: url({% static 'img/verde.jpg' %});
+            background-size:cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> -->
+</head>
+<body>
+    <div id="base_login">
+        <figure>
+            <img src="{% static 'img/logo.png' %}" id='logo_pet'>
+        </figure>
+        <form id="login" method="post">{% csrf_token %}
+            <h1>Log In</h1>
+            <fieldset id="inputs">
+                <input id="id_username" name="username" maxlength="254" type="text" placeholder="Username" autofocus required>
+                <input id="id_password" name="password" type="password" placeholder="Password" required>
+            </fieldset>
+            <fieldset id="actions">
+                <input type="submit" id="submit" value="Log in">
+                <a href="#">Forgot your password?</a>
+                <a href="#">Register</a>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

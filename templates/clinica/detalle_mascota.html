@@ -1,0 +1,179 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% block extrahead %}
+<style type="text/css">
+    .detalle {
+        width:40%;
+        margin: 0 auto;
+        border: 1px solid #FFC107;
+        padding: 1em 1em 0em 1em;
+        border-radius: 8px;
+    }
+    h3,h1,h2 {
+        text-align: center;
+    }
+    .detalle1{
+        width:68%;
+        margin:0 auto;
+        position:relative;
+        padding-bottom: 2em;
+        top:4em;
+    }
+    .card-body {
+    }
+    #cliente {
+        padding: 0.3em 1em 0.3em 1em;
+        background: #FFC107;
+        color: #fff;
+        border-radius: 12px 12px 0px 0px;        
+        text-align: center;
+        font-weight: bold;
+        font-size:1.3em;
+    }
+    .img-responsive {
+        width: 40%;
+        margin: 0 auto;
+        border-radius:30%;
+    }
+    #center {
+        text-align:center;
+    }
+    #masc{
+        font-size:2em;
+    }
+    .zebra {
+        position:relative;
+        display:inline-block;
+    }
+    .card-header h1, .card-body h2{
+        background:#FFECB3;
+        margin: 0 auto;
+        padding: 0.1em 0em 0em 0em;
+        width:45%;
+        border-left:5px solid #FFC107;
+        border-right:5px solid #FFC107;
+        color: #FFf;
+        text-shadow: 2px 0px 4px #FF9800;
+    }
+    .rounded-list{
+        font-family: sans-serif;
+        margin: 0.5em 2em 0.5em 2em;
+    }
+    .ant {
+        position:relative;
+        bottom:0.5em;
+    }
+</style>
+<link href="{% static 'css/list.css' %}" rel="stylesheet">
+<link href="{% static 'css/tabla.css' %}" rel="stylesheet">
+{% endblock extrahead %}
+{% block content %}
+        <div class="card-header bgm-orange">
+            <h2 id="masc">Detalle Generalizado de la Mascota {{object.nombre}}</h2>
+            <ul class="actions actions-alt">
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown" aria-expanded="false">
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a href="{% url 'clinica:detalle_mascota' object.propietario.slug object.slug %}">Refresh</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'clinica:editar_mascota' object.propietario.slug object.slug %}">Editar</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'clinica:eliminar_mascota' object.propietario.slug object.slug %}">Eliminar</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'clinica:listar_mascotas' object.propietario.slug %}">Volver</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body card-padding">
+                {% if object.avatar %}
+                <img src="{{object.avatar.url}}" class="img-responsive" alt="">
+                {% endif %}
+                <a class="card-header" href="">
+                    <h1>{{object.nombre}}</h1>
+                    <h3>Ficha N°: {{object.ficha}}</h3>
+                </a>
+                <div class="card-body card-padding">
+                    <div class="detalle">
+                        <ol id="list" class="rounded-list">
+                            <li><a href=""><strong>Raza: </strong>{{object.raza}}</a></li>
+                            <li><a href=""><strong>Color: </strong>{{object.color}}</a></li>
+                            <li><a href=""><strong>Especie: </strong>{{object.especie}}</a></li>
+                            <li><a href=""><strong>Edad: </strong>{{object.edad}} años</a></li>
+                            <li><a href=""><strong>Peso: </strong>{{object.peso}} Kg</a></li>
+                            <li><a href=""><strong>Descripción: </strong>{{object.descripcion}}</a></li>
+                            <li><a href=""><strong>ANAMNESIS</strong></a>
+                                <ol>
+                                    <li><a  href=""><strong>Ambiental: </strong>{{object.ambiental}}</a></li>
+                                    <li><a  href=""><strong>Alimentación: </strong>{{object.alimento}}</a></li>
+                                    <li><a  href=""><strong>Baño: </strong>{{object.bano}}</a></li>
+                                </ol>
+                            </li>                        
+                        </ol>
+                    </div> 
+                    <div class="detalle1">
+                    <h2 class="ant">Antecedentes</h2>
+                    <table cellspacing="0" class="zebra">
+                        <caption id="cliente">Vacunas</caption>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Vacuna</th> 
+                                <th id="center">Fecha</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in vacunas %}
+                            <tr>
+                                <td>{{i.id}}</td> 
+                                <td>{{i.vacuna}}</td> 
+                                <td>{{i.fecha}}</td> 
+                            </tr>  
+                            {% endfor %} 
+                        </tbody> 
+                        <tfoot> 
+                            <tr> 
+                                <td></td> 
+                                <td></td> 
+                                <td></td>  
+                            </tr> 
+                        </tfoot>
+                    </table> 
+                    <table cellspacing="0" class="zebra">
+                        <caption id="cliente">Desparacitantes</caption>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Producto</th> 
+                                <th id="center">Fecha</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in desparacitantes %}
+                            <tr>
+                                <td>{{i.id}}</td> 
+                                <td>{{i.producto}}</td> 
+                                <td>{{i.fecha}}</td> 
+                            </tr>  
+                            {% endfor %} 
+                        </tbody> 
+                        <tfoot> 
+                            <tr> 
+                                <td></td> 
+                                <td></td> 
+                                <td></td>  
+                            </tr> 
+                        </tfoot>
+                    </table> 
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

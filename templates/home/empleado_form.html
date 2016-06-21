@@ -1,0 +1,177 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block extrahead %}
+<link href="{% static 'css/bootstrap-select.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/farbtastic.css' %}" rel="stylesheet">
+<link href="{% static 'css/chosen.css' %}" rel="stylesheet">
+<link href="{% static 'css/summernote.css' %}" rel="stylesheet">
+<style type="text/css">
+    .row{
+        padding-left: 1em;
+    }
+    #f-500, #file, #btn{
+        margin-left:1.5em;
+    }
+    input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+        outline:none;
+        border: none;
+        font-size:1.2em;
+        border-radius:3px;
+        padding: 0.5em;     
+        border-color: #00a5bb;
+        background: #00BCD4;
+        color:#fff;
+        box-shadow: 2px 2px 4px #E0E0E0;
+    } 
+</style>
+{% endblock extrahead %}
+{% block content %}
+ <!-- <div id="blog-text" class="reading-wrapper"> -->
+ <!--    <h2>{% trans "Edición de Perfil de Empleado" %}</h2> -->
+ <!--     <form method="post"> -->
+ <!--        {% csrf_token %} -->
+ <!--        {{ form.as_p }} -->
+ <!--        <input type="submit" value="{% trans "Go" %}"/> -->
+ <!--    </form> -->
+<!-- </div> --> 
+<div class="card-header ch-alt">
+     <h2 id='login'>Edición de Perfil de Empleado</h2>
+</div>
+<div class="card-body card-padding">
+    <form enctype="multipart/form-data" method="post">{% csrf_token %}
+        <div class="row">
+             <div class="col-sm-4">
+                 <div class="input-group">
+                     <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                     <div class="fg-line">
+                         {{form.username}}
+                     </div>
+                 </div>
+                 <br/>
+                 <div class="input-group">
+                     <span class="input-group-addon"><i class="zmdi zmdi-key"></i></span>
+                     <div class="fg-line" id="id_password">
+                         <span class="helptext">Las contraseñas no se almacenan en texto plano, por lo que no hay forma de ver la de este usuario, pero puede cambiar la contraseña usando <a  href="/{{request.user.slug}}/password_change">este formulario</a>.</span>
+                     </div>
+                 </div>
+                 <br/>
+                 <div class="input-group fg-float">
+                     <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                     <div class="fg-line">
+                         {{form.email}}
+                         <!-- <input id="id_email" value="{{request.user.email}}" maxlength="254" name="email" type="email" class="form-control" placeholder="Correo Electrónico"> -->
+                     </div>
+                 </div>
+                 <br/>
+                 <div class="toggle-switch toggle-switch-demo">
+                     <label for="ts1" class="ts-label">Es Staff</label>
+                     {{form.is_staff}}
+                     <label for="ts1" class="ts-helper"></label>
+                 </div>
+             </div>
+             <div class="col-sm-4">
+                 <div class="input-group">
+                     <span class="input-group-addon"><i class="zmdi zmdi-account-circle"></i></span>
+                     <div class="fg-line">  
+                         {{form.first_name}}
+                         <!-- <input id="id_first_name" value="{{request.user.first_name}}" maxlength="30" name="first_name" type="text"  class="form-control" placeholder="{% trans "name"|title %}"> -->
+                     </div>                     
+                 </div>
+                 <br/>
+                 <div class="input-group">
+                     <span class="input-group-addon"><i class="zmdi zmdi-account-circle"></i></span>
+                     <div class="fg-line">
+                         {{form.last_name}}
+                         <!-- <input id="id_last_name" maxlength="30" name="last_name" value="{{request.user.last_name}}"  type="text"  class="form-control" placeholder="{% trans "apellido paterno"|title %}"> -->
+                     </div>
+                 </div>
+                 <br/>
+                 <div class="input-group">
+                     <span class="input-group-addon"><i class="zmdi zmdi-account-circle"></i></span>
+                     <div class="fg-line">
+                         {{form.second_name}}
+                         <!-- <input id="id_second_name" value="{{request.user.second_name}}" maxlength="100" name="second_name" type="text"  class="form-control" placeholder="{% trans "apellido materno"|title %}"> -->
+                     </div>
+                 </div>
+                 <br/>
+                 <div class="input-group">
+                     <span class="input-group-addon"><i class="zmdi zmdi-face"></i></span>
+                     <div class="fg-line">
+                         {{form.dni}}
+                         <!-- <input id="id_dni" value="{{request.user.dni}}" maxlength="8" name="dni" type="text"   class="form-control" placeholder="DNI"> -->
+                     </div>                     
+                 </div> 
+             </div>
+             <div class="col-sm-4">
+                 <p id="f-500" class="f-500 c-black m-b-20">Imagen</p>  
+                 {{form.avatar}}                
+                 </div>
+             </div>
+             <br/>
+             <div class="row">
+                 <div class="col-sm-3 m-b-15">
+                     <p class="f-500 c-black m-b-15">Pais de Nacimiento</p>
+                     {{form.lugar_nac}}
+                 </div> 
+                 <div class="col-sm-3 m-b-15">
+                     <p class="f-500 c-black m-b-15">Grado de Instrucción</p>
+                     {{form.grado_instruc}}         
+                 </div>
+                 <div class="col-sm-3 m-b-15">
+                     <p class="f-500 c-black m-b-15">Género</p>
+                     {{form.sexo}}        
+                 </div>
+                 <div class="col-sm-3 m-b-15">
+                     <p class="f-500 c-black m-b-15">Estado Civil</p>
+                     {{form.est_civil}}
+                 </div>
+             </div>             
+             <div class="row">
+                 <div class="col-sm-4">
+                     <p class="f-500 c-black m-b-15">Fecha de Nacimiento</p>
+                     <div class="input-group form-group">
+                         <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                         <div class="dtp-container">
+                             {{form.fecha_nac}}
+                         </div>         </div>
+                     </div>
+                     <div class="col-sm-4">
+                         <div class="input-group form-group">
+                             <span class="input-group-addon"><i class="zmdi zmdi-arrow-right"></i></span>
+                             <div class="fg-line">
+                                 {{form.domicilio}}
+                                 <!-- <input id="id_domicilio" value="{{request.user.domicilio}}" maxlength="150" name="domicilio"  type="text" class="form-control" placeholder="Domicilio"> -->
+                             </div>
+                         </div>
+                     </div> 
+                     <div class="col-sm-4">
+                         <div class="input-group form-group">
+                             <span class="input-group-addon"><i class="zmdi zmdi-local-phone"></i></span>
+                             <div class="fg-line">
+                                 {{form.telefono}}
+                                 <!-- <input id="id_telefono" maxlength="9" value="{{request.user.telefono}}" name="telefono" type="text" class="form-control" placeholder="Teléfono"> -->
+                             </div>
+                         </div>
+                     </div> 
+                 </div>
+                 <br/>
+                 <br/>
+                 <button type="submit" id="btn" class="btn btn-primary">Guardar <i class="zmdi zmdi-mail-send"></i></button>
+                 <a href="{% url 'home:inicio' %}" class="btn bgm-gray waves-effect"><i class="zmdi zmdi-arrow-left"></i> Cancelar</a>
+             </form>
+         </div>  
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/nouislider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'js/typeahead.bundle.min.js' %}"></script>
+<script src="{% static 'js/summernote-updated.min.js' %}"></script>
+
+<script src="{% static 'js/chosen.jquery.js' %}"></script>
+<script src="{% static 'js/fileinput.min.js' %}"></script>
+<script src="{% static 'js/input-mask.min.js' %}"></script>
+<script src="{% static 'js/farbtastic.min.js' %}"></script>
+{% endblock script %}

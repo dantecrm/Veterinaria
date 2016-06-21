@@ -1,0 +1,174 @@
+{% extends "base_sistema.html" %}
+{% load staticfiles %}
+{% load formset_tags %}
+{% load i18n %}
+{% block extrahead %}
+<link href="{% static 'css/bootstrap-select.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/farbtastic.css' %}" rel="stylesheet">
+<link href="{% static 'css/chosen.css' %}" rel="stylesheet">
+<link href="{% static 'css/summernote.css' %}" rel="stylesheet">
+<script src="{{ STATIC_URL }}js/jquery.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+<style type="text/css">
+    #centro{
+        padding: 2em;
+        border: 1px solid #00BCD4;
+        border-radius:4px;
+        width:90%;
+        margin:0 auto;
+    }
+    #venta{
+        text-align: center;
+        font-size:2em;
+    }
+    #choice, #cant{
+        width:20em;
+    }
+    #choice {
+        margin:0 auto;
+    }
+    #eliminar{
+        margin-left:1em;
+    }
+    #btn{
+        margin-left:34%;
+    }
+    #afecto{
+        margin-left:1em;
+    }
+    input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+        outline:none;
+        border: none;
+        font-size:1.2em;
+        border-radius:3px;
+        padding: 0.5em;     
+        border-color: #00a5bb;
+        background: #00BCD4;
+        color:#fff;
+        box-shadow: 2px 2px 4px #E0E0E0;
+    } 
+    #formset {
+        /*background: #E1F5FE;*/
+        padding: 1em;
+        border-radius:8px;
+    }
+    .formset {
+        width:48%;
+        margin:0 auto;
+    }
+    .item {
+        background-color: #E1F5FE;
+        border: 1px solid #00BCD4;
+        border-radius:8px;
+        margin-bottom: 4px;
+        padding: 5px 15px;
+    } 
+    #add {
+        margin-left:26%;
+    }
+    #extra {
+        width:100%;
+        margin: 0 auto;
+    }
+    .min {
+        color: #fff;
+    }
+</style>
+{% endblock extrahead %}
+{% block content %}
+ <!-- <div id="blog-text" class="reading-wrapper"> -->
+ <!--    <h2>{% trans "Agregar Nuevo Compra" %}</h2> -->
+ <!--     <form method="post"> -->
+ <!--        {% csrf_token %} -->
+ <!--        {{ form.as_p }} -->
+ <!--        <input type="submit" value="{% trans "Go" %}"/> -->
+ <!--    </form> -->
+<!-- </div> --> 
+<div class="card-header ch-alt bgm-cyan">
+     <h2 id='venta'>Ejecutar Nueva Venta</h2>
+</div>
+<div class="card-body card-padding">
+     <div id="centro">
+         <form method="post" accept-charset="utf-8">{% csrf_token %} 
+             <div class="input-group" id="choice">
+                 <div class="fg-line">
+                     <label class="fg-label">Cliente</label>
+                     {{form.cliente}}
+                 </div> 
+             </div>
+             <br/>
+             <br/>
+             <div class="card-body card-padding" id="formset" data-formset-prefix="{{ formset.prefix }}">
+                 {{ formset.management_form }}
+                 <div data-formset-body class="formset">
+                     <!-- New forms will be inserted in here -->
+                     {% for form in formset %}
+                     <div class="item" data-formset-form>
+                         {{form}}
+                         <!-- <div class="input-group" id="choice"> -->
+                         <!--     <div class="fg-line"> -->
+                         <!--         <label class="fg-label">Producto</label> -->
+                         <!--         {{form.producto}} -->
+                         <!--     </div> --> 
+                         <!-- </div> -->
+                         <!-- <br/> -->
+                         <!-- <div class="form-group" id="cant"> -->
+                         <!--     <div class="form-group fg-line"> -->
+                         <!--         <label>Cantidad</label> -->
+                         <!--         {{form.cantidad}} -->
+                         <!--     </div> -->
+                         <!-- </div> -->
+                         <!-- <div class="form-group" id="cant"> -->
+                         <!-- <div class="hidden">{{ form.DELETE }}</div> -->
+                         <!-- <button type="button" class="btn btn-danger btn-icon waves-effect waves-circle waves-float "  data-formset-delete-button><i class="zmdi zmdi-close"></i></button> -->
+                     <!-- </div> -->
+                         <!-- <div class="checkbox m-b-15" id="eliminar"> -->
+                             <!-- <label> -->
+                             <!--     <input id="id_carrito-0-DELETE" name="carrito-0-DELETE" type="checkbox" value=""> -->
+                             <!--     <input id="id_carrito-0-venta" name="carrito-0-venta" type="hidden" value=""> -->
+                             <!--     <input id="id_carrito-0-id" name="carrito-0-id" type="hidden" /> -->
+                             <!--     <i class="input-helper"></i>Eliminar -->
+                             <!-- </label> -->
+                         <!-- </div> -->
+                     </div>
+                     <br/>
+                     {% endfor %}
+                 </div>
+                 <button type="button" id="add" data-formset-add class="btn btn-success waves-effect">Agregar Otro &nbsp; <i class="zmdi zmdi-plus-circle-o"></i></button>
+                 <script type="form-template" data-formset-empty-form>
+                     {% escapescript %}
+                     <div class="item" data-formset-form> 
+                     {{formset.empty_form}} 
+                     </div>
+                     <br>
+                     {% endescapescript %}
+                 </script>
+                 <!-- <input type="button" value="Agregar Otro" data-formset-add> -->
+                 <script>
+                     jQuery(function($) {
+                         $("#formset").formset({
+                             animateForms: true
+                         });
+                     });
+                 </script>
+             </div> 
+             <br/>
+             <button id="btn" type="submit" class="btn bgm-lightblue waves-effect">Guardar <i class="zmdi zmdi-mail-send"></i></button>
+             <a href="{% url 'ventas:listar_ventas' %}" class="btn bgm-gray waves-effect"><i class="zmdi zmdi-arrow-left"></i> Volver</a>
+         </form>
+     </div> 
+</div>  
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/nouislider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'js/typeahead.bundle.min.js' %}"></script>
+<script src="{% static 'js/summernote-updated.min.js' %}"></script>
+
+<script src="{% static 'js/chosen.jquery.js' %}"></script>
+<script src="{% static 'js/fileinput.min.js' %}"></script>
+<script src="{% static 'js/input-mask.min.js' %}"></script>
+<script src="{% static 'js/farbtastic.min.js' %}"></script>
+{% endblock script %}     
