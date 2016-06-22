@@ -2,6 +2,7 @@ django==1.9.7
 Pillow
 django-registration
 django-timezone-field
+django-jquery-js
 django-formset-js
 django-rosetta
 django-realtime
