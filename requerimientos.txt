@@ -1,12 +1,13 @@
-django==1.9.6
+django==1.9.7
 Pillow
 django-registration
 django-timezone-field
+django-formset-js
 django-rosetta
 django-realtime
 django-countries
-django-easy-timezones pytz pygeoip
-git+https://github.com/anishmenon/django-realtime.git --upgrade
-pip install django-treebeard
+git+https://github.com/anishmenon/django-realtime.git
+django-treebeard
 django-linguist
 # sudo apt-get install python-django-treebeard
+#django-easy-timezones pytz pygeoip

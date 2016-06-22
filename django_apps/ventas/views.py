@@ -3,7 +3,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.template.context_processors import csrf
 from django.db.models import Q
-from django.template import RequestContext # For CSRF
+from django.template import RequestContext
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.http import HttpResponse, HttpResponseRedirect
 
