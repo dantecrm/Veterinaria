@@ -18,6 +18,7 @@ from django.conf.urls import include, patterns, url, i18n
 from django.conf.urls import (
     handler400, handler403, handler404, handler500
 )
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf import settings
@@ -72,6 +73,7 @@ urlpatterns += i18n_patterns(
 # handler404 = 'views.Page_not_Found'
 
 if settings.DEBUG:
+    # urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

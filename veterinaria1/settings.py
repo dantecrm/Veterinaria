@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0ii3x-k^f_2-=fbng(x85z1%=baq7rhlj$n#0_4nspp6gx$goi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 from django_apps import home, core, inventario, persona, compras, ventas, clinica
@@ -51,10 +52,15 @@ INSTALLED_APPS = [
     # 'extra_views',
     # 'linguist',
     # 'rosetta',
-    # 'wkhtmltopdf',
-    'ajax_select',
+    'wkhtmltopdf',
+    # 'ajax_select',
     # 'social.apps.django_app.default',
 ]
+
+# WKHTMLTOPDF_CMD = '/path/to/my/wkhtmltopdf'
+# WKHTMLTOPDF_CMD = '/home/dante/.virtualenvs/django-1.9/local/lib/python2.7/site-packages/wkhtmltopdf/'
+# WKHTMLTOPDF_CMD = '/usr/local/bin/wkhtmltopdf'
+# WKHTMLTOPDF_CMD_OPTIONS = 'some_option_here'
 
 # CRISPY_TEMPLATE_PACK = 'uni_form'
 
@@ -230,3 +236,7 @@ STATICFILES_FINDERS = (
 #     }
 # }
 
+WKHTMLTOPDF_CMD = '/usr/bin/wkhtmltopdf'
+WKHTMLTOPDF_CMD_OPTIONS = {
+    'quiet': True,
+}

@@ -1,5 +1,7 @@
 django==1.9.7
 Pillow
+django-db-signals
+django-ajax-selects
 django-registration
 django-timezone-field
 django-jquery-js

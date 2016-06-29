@@ -4,9 +4,10 @@ from django.shortcuts import render, get_object_or_404, redirect, render_to_resp
 from django.template.context_processors import csrf
 from django.db.models import Q
 from django.template import RequestContext
+from django.conf import settings
 from django.forms.formsets import formset_factory, BaseFormSet
-from django.http import HttpResponse, HttpResponseRedirect
-
+from django.http import HttpResponse, HttpResponseRedirect, Http404
+from wkhtmltopdf.views import PDFTemplateResponse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import *
@@ -70,8 +71,8 @@ def CreateVenta(request):
 
 @login_required(login_url='home:login_empleado')
 def UpdateVenta(request, venta_pk=None):
-    if not request.user.is_staff or not request.user.is_superuser:
-        raise Http404
+    # if not request.user.is_staff or not request.user.is_superuser:
+    #     raise Http404
     instance = OrdenVenta.objects.get(pk=venta_pk)
     venta_form = OrdenVentaForm(request.POST or None, instance=instance)
     CarritoFormSet = inlineformset_factory(OrdenVenta, CarritoVenta, form=CarritoVentaForm,formset=RequiredBaseInlineFormSet, max_num=10, extra=1)
@@ -114,6 +115,31 @@ class DetalleVenta(LoginRequiredMixin,DetailView):
         context['total_venta'] = t
         return context
 
+class VentaPDF(DetailView):
+    model = OrdenVenta
+    pk_url_kwarg = 'venta_pk'
+    template='ventas/venta_pdf.html'
+    context= {'title': 'Detalle de Venta'}
+
+
+    def get(self, request, *args, **kwargs):
+        self.context['venta'] = self.get_object()
+        self.context['productos'] = CarritoVenta.objects.filter(venta_id=self.get_object().id)
+        a = CarritoVenta.objects.all().values()
+        t = 0
+        for j in range(len(a)):
+            if self.get_object().id == a[j].get('venta_id'):
+                t += float(a[j].get('total'))
+        self.context['total_venta'] = t
+
+        response=PDFTemplateResponse(request=request,
+                                     template=self.template,
+                                     # filename ="venta.pdf",
+                                     context=self.context,
+                                     show_content_in_browser=False,
+                                     # cmd_options=settings.WKHTMLTOPDF_CMD_OPTIONS,
+                                     )
+        return response
 
 class EliminarVenta(LoginRequiredMixin,SuccessMessageMixin,DeleteView):
     model = OrdenVenta
