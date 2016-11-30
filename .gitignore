@@ -1,5 +1,10 @@
+*.sqlite3
 *.pyc
+~*
+*- copia*
 .idea
 .coverage
 .vagrant
 .ropeproject
+media_cdn
+*media_cdn
