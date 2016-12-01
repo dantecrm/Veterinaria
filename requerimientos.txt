@@ -7,7 +7,7 @@ django-extensions==1.6.1
 django-wkhtmltopdf
 django-timezone-field
 django-jquery-js
-django-jenkins=0.110.0
+django-jenkins==0.110.0
 coverage==4.0.2
 django-formset-js
 django-rosetta
