@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['localhost','127.0.0.1']
 from django_apps import home, core, inventario, persona, compras, ventas, clinica
 # Application definition
 
-INSTALLED_APPS = [
+PROJECT_APPS = [
     'django_apps.home',
     'django_apps.core',
     'django_apps.inventario',
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django_apps.compras',
     'django_apps.ventas',
     'django_apps.clinica',
+
+]
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -53,10 +56,10 @@ INSTALLED_APPS = [
     # 'linguist',
     # 'rosetta',
     'wkhtmltopdf',
+    'django_jenkins',
     # 'ajax_select',
-    # 'social.apps.django_app.default',
-]
-
+    # 'social.apps.django_app.default',]
+] + PROJECT_APPS
 # WKHTMLTOPDF_CMD = '/path/to/my/wkhtmltopdf'
 # WKHTMLTOPDF_CMD = '/home/dante/.virtualenvs/django-1.9/local/lib/python2.7/site-packages/wkhtmltopdf/'
 # WKHTMLTOPDF_CMD = '/usr/local/bin/wkhtmltopdf'
